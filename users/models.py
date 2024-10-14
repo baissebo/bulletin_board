@@ -17,16 +17,15 @@ class User(AbstractUser):
     first_name = models.CharField(max_length=30, help_text="Укажите ваше имя")
     last_name = models.CharField(max_length=30, help_text="Укажите вашу фамилию")
     phone = PhoneNumberField(
-        verbose_name="Телефон", **NULLABLE, help_text="Введите номер телефона")
+        verbose_name="Телефон", **NULLABLE, help_text="Введите номер телефона"
+    )
     avatar = models.ImageField(
         upload_to="users/avatars",
         verbose_name="Аватар",
         **NULLABLE,
-        help_text="Загрузите изображение"
+        help_text="Загрузите изображение",
     )
-    role = models.CharField(max_length=20,
-                            choices=ROLE_CHOICES,
-                            default="user")
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default="user")
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
