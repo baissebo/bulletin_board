@@ -18,6 +18,10 @@ shell = "^1.0.1"
 isort = "^5.13.2"
 django-cors-headers = "^4.5.0"
 drf-yasg = "^1.21.7"
+django-phonenumber-field = {extras = ["phonenumbers"], version = "^8.0.0"}
+setuptools = "^75.1.0"
+pillow = "^10.4.0"
+djoser = "^2.2.3"
 
 
 [build-system]
