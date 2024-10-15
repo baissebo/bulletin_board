@@ -11,5 +11,5 @@ router.register(r"ads", AdViewSet)
 router.register(r"reviews", ReviewViewSet)
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path("", include(router.urls)),
 ]
