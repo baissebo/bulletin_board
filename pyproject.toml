@@ -22,6 +22,8 @@ django-phonenumber-field = {extras = ["phonenumbers"], version = "^8.0.0"}
 setuptools = "^75.1.0"
 pillow = "^10.4.0"
 djoser = "^2.2.3"
+coverage = "^7.6.3"
+flake8 = "^7.1.1"
 
 
 [build-system]

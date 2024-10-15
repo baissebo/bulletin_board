@@ -28,7 +28,8 @@ class Review(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, verbose_name="Автор отзыва"
     )
-    ad = models.ForeignKey(Ad, on_delete=models.CASCADE, verbose_name="Объявление")
+    ad = models.ForeignKey(Ad, on_delete=models.CASCADE,
+                           verbose_name="Объявление")
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name="Дата создания отзыва"
     )

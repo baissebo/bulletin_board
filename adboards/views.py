@@ -1,6 +1,6 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, filters, permissions
-from rest_framework.permissions import AllowAny
+from rest_framework.exceptions import PermissionDenied
 
 from adboards.models import Ad, Review
 from adboards.paginations import AdPagination
@@ -18,9 +18,11 @@ class AdViewSet(viewsets.ModelViewSet):
 
     def get_permissions(self):
         if self.request.method in ["POST", "PUT", "PATCH", "DELETE"]:
-            return (IsOwnerOrReadOnly,) if not self.request.user.role == "admin" else (IsAdminOrReadOnly,)
-        elif self.request.method in ["GET"]:
-            return (AllowAny,)
+            if self.request.user.is_authenticated:
+                if self.request.user.role == "admin":
+                    return [IsAdminOrReadOnly()]
+                return [IsOwnerOrReadOnly()]
+            raise PermissionDenied("У вас недостаточно прав для совершения этого действия!")
         return super().get_permissions()
 
 
@@ -31,7 +33,9 @@ class ReviewViewSet(viewsets.ModelViewSet):
 
     def get_permissions(self):
         if self.request.method in ["POST", "PUT", "PATCH", "DELETE"]:
-            return (IsOwnerOrReadOnly,) if not self.request.user.role == "admin" else (IsAdminOrReadOnly,)
-        elif self.request.method in ["GET"]:
-            return (permissions.IsAuthenticated,)
+            if self.request.user.is_authenticated:
+                if self.request.user.role == "admin":
+                    return [IsAdminOrReadOnly()]
+                return [IsOwnerOrReadOnly()]
+            raise PermissionDenied("У вас недостаточно прав для совершения этого действия!")
         return super().get_permissions()
