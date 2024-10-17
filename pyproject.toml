@@ -24,6 +24,8 @@ pillow = "^10.4.0"
 djoser = "^2.2.3"
 coverage = "^7.6.3"
 flake8 = "^7.1.1"
+pytest = "^8.3.3"
+pytest-django = "^4.9.0"
 
 
 [build-system]
